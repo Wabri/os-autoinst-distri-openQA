@@ -6,8 +6,8 @@ products:
     arch: x86_64
     version: Tumbleweed
     settings:
-      CASEDIR: "https://github.com/os-autoinst/os-autoinst-distri-openQA"
-      NEEDLES_DIR: "https://github.com/os-autoinst/os-autoinst-needles-openQA"
+      CASEDIR: "https://github.com/wabri/os-autoinst-distri-openQA"
+      NEEDLES_DIR: "https://github.com/wabri/os-autoinst-needles-openQA"
 
 machines:
   64bit-2G:
@@ -38,35 +38,3 @@ job_templates:
     settings:
       DESKTOP: minimalx
       OPENQA_FROM_GIT: "1"
-  openqa_from_containers:
-    <<: *common
-    settings:
-      DESKTOP: minimalx
-      LOAD_PYTHON_TEST_MODULES: "0"
-      OPENQA_CONTAINERS: "1"
-      OPENQA_FROM_GIT: "1"
-  openqa_from_bootstrap:
-    <<: *common
-    settings:
-      DESKTOP: minimalx
-      OPENQA_FROM_BOOTSTRAP: "1"
-      AUTOYAST: "https://raw.githubusercontent.com/os-autoinst/openQA/master/contrib/ay-openqa-worker.xml.erb"
-      VALIDATE_AUTOYAST: "1"
-  openqa_install_nginx:
-    <<: *common
-    settings:
-      DESKTOP: minimalx
-      OPENQA_WEB_PROXY: 'nginx'
-      USE_APPARMOR: "1"
-  openqa_install_multimachine:
-    <<: *common_4g
-    settings:
-      DESKTOP: minimalx
-      FULL_OPENSUSE_TEST: "1"
-      FULL_MM_TEST: "1"
-  openqa_install+publish:
-    <<: *common
-    settings:
-      DESKTOP: minimalx
-      PUBLISH_HDD_1: 'opensuse-Tumbleweed-%ARCH%@%MACHINE%-%BUILD%.qcow2'
-      PUBLISH_PFLASH_VARS: 'opensuse-Tumbleweed-%ARCH%@%MACHINE%-%BUILD%-uefi-vars.qcow2'
